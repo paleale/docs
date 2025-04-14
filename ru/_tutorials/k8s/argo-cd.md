@@ -211,7 +211,7 @@
 1. Нажмите кнопку **Create project access token**.
 1. Скопируйте значение созданного токена.
 1. В консоли Argo CD перейдите в раздел **Settings** → **Repositories**.
-1. Нажмите кнопку **Connect Repo Using HTTPS**.
+1. Нажмите кнопку **Connect Repo Using HTTPS**. Примечание: по умолчанию доступ к репозиториям через HTTPS в Managed Gitlab отключен. Чтобы включить его, в вашем Managed Gitlab перейдите в **Admin** -> **Settings** -> **General**, раскройте форму **Visibility and access controls**, найдите настройку с названием **Enabled Git access protocols** и во всплывающем списке выберите **Both SSH and HTTP(S)**.
 1. В открывшейся форме задайте параметры:
    * **Repository URL** — URL репозитория вида `https://<имя_инстанса_{{ GL }}>.gitlab.yandexcloud.net/<имя_пользователя-администратора>/gitlab-test.git`.
    * **Username** — `gitlab-ci-token`.
