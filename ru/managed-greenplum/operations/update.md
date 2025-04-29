@@ -13,12 +13,8 @@ description: Следуя данной инструкции, вы сможете
 * [Изменить дополнительные настройки кластера](#change-additional-settings).
 * [Изменить настройки регламентных операций технического обслуживания](#change-background-settings).
 * [Изменить настройки {{ GP }}](#change-gp-settings) согласно документации {{ GP }}.
-* [Изменить класс хостов](#change-resource-preset).
-* [Изменить тип диска и увеличить размер хранилища](#change-disk-size).
-
-Если вы хотите переместить кластер в другую зону доступности, [восстановите его из резервной копии](cluster-backups.md#restore). Во время восстановления укажите новую зону доступности. В результате вы перенесете хосты кластера.
-
-Если вы используете [внешние источники данных](../concepts/external-tables.md) для работы по протоколу PXF, [узнайте, как настроить протокол](./pxf/settings.md). Так можно оптимизировать работу с внешними данными.
+* [Изменить настройки протокола PXF для оптимизации работы с внешними данными](./pxf/settings.md).
+* [Изменить настройки аутентификации в конфигурационном файле pg_hba.conf](user-auth-rules.md).
 
 ## Изменить имя и описание кластера {#change-name-and-description}
 
@@ -27,7 +23,7 @@ description: Следуя данной инструкции, вы сможете
 - Консоль управления {#console}
 
     1. Перейдите [на страницу каталога]({{ link-console-main }}) и выберите сервис **{{ ui-key.yacloud.iam.folder.dashboard.label_managed-greenplum }}**.
-    1. Выберите кластер и нажмите кнопку **{{ ui-key.yacloud.mdb.cluster.overview.button_action-edit }}** в верхней части страницы.
+    1. Выберите кластер и нажмите кнопку **{{ ui-key.yacloud.mdb.clusters.button_action-edit }}** в верхней части страницы.
     1. В блоке **{{ ui-key.yacloud.mdb.forms.section_base }}** задайте новые имя и описание кластера.
     1. Нажмите кнопку **{{ ui-key.yacloud.common.save }}**.
 
@@ -170,7 +166,7 @@ description: Следуя данной инструкции, вы сможете
 - Консоль управления {#console}
 
     1. Перейдите [на страницу каталога]({{ link-console-main }}) и выберите сервис **{{ mgp-name }}**.
-    1. Выберите кластер и нажмите кнопку **{{ ui-key.yacloud.mdb.cluster.overview.button_action-edit }}** в верхней части страницы.
+    1. Выберите кластер и нажмите кнопку **{{ ui-key.yacloud.mdb.clusters.button_action-edit }}** в верхней части страницы.
     1. В блоке **{{ ui-key.yacloud.mdb.forms.section_network-settings }}** установите или отключите опцию **{{ ui-key.yacloud.mdb.hosts.dialog.field_public_ip }}**.
     1. Нажмите кнопку **{{ ui-key.yacloud.common.save }}**.
 
@@ -295,7 +291,7 @@ description: Следуя данной инструкции, вы сможете
 - Консоль управления {#console}
 
     1. Перейдите на страницу каталога и выберите сервис **{{ ui-key.yacloud.iam.folder.dashboard.label_managed-greenplum }}**.
-    1. Выберите кластер и нажмите кнопку **{{ ui-key.yacloud.mdb.cluster.overview.button_action-edit }}** на панели сверху.
+    1. Выберите кластер и нажмите кнопку **{{ ui-key.yacloud.mdb.clusters.button_action-edit }}** на панели сверху.
     1. Измените дополнительные настройки кластера:
 
         * {% include [Backup time](../../_includes/mdb/console/backup-time.md) %}
@@ -732,7 +728,7 @@ description: Следуя данной инструкции, вы сможете
 - Консоль управления {#console}
 
     1. Перейдите на страницу каталога и выберите сервис **{{ ui-key.yacloud.iam.folder.dashboard.label_managed-greenplum }}**.
-    1. Выберите кластер и нажмите кнопку **{{ ui-key.yacloud.mdb.cluster.overview.button_action-edit }}** на панели сверху.
+    1. Выберите кластер и нажмите кнопку **{{ ui-key.yacloud.mdb.clusters.button_action-edit }}** на панели сверху.
     1. В блоке **{{ ui-key.yacloud.greenplum.section_background-activities }}** измените параметры:
 
         {% include [background activities](../../_includes/mdb/mgp/background-activities-console.md) %}
@@ -850,14 +846,32 @@ description: Следуя данной инструкции, вы сможете
 
 ## Изменить настройки {{ GP }} {#change-gp-settings}
 
-Вы можете изменить настройки СУБД для хостов вашего кластера.
+Вы можете изменить [глобальные настройки СУБД](../concepts/settings-list.md) вашего кластера. Перечень доступных для изменения настроек см. в разделе [{#T}](../concepts/settings-list.md).
+
+{% note info %}
+
+Для изменения настроек на уровне пользователя, в том числе тех, которые не управляются сервисом {{ mgp-name }} на уровне кластера, используйте команду:
+
+```sql
+ALTER ROLE <имя_роли> SET <настройка> = <значение>;
+```
+
+Для изменения настроек на уровне отдельной базы данных используйте команду:
+
+```sql
+ALTER DATABASE <имя_базы_данных> SET <настройка> = <значение>;
+```
+
+Полный список настроек см. в [документации {{ GP }}](https://techdocs.broadcom.com/us/en/vmware-tanzu/data-solutions/tanzu-greenplum/6/greenplum-database/ref_guide-config_params-guc-list.html).
+
+{% endnote %}
 
 {% list tabs group=instructions %}
 
 - Консоль управления {#console}
 
   1. Перейдите на страницу каталога и выберите сервис **{{ ui-key.yacloud.iam.folder.dashboard.label_managed-greenplum }}**.
-  1. Выберите кластер и нажмите кнопку **{{ ui-key.yacloud.mdb.cluster.overview.button_action-edit }}** на панели сверху.
+  1. Выберите кластер и нажмите кнопку **{{ ui-key.yacloud.mdb.clusters.button_action-edit }}** на панели сверху.
   1. Измените [настройки {{ GP }}](../concepts/settings-list.md), нажав кнопку **{{ ui-key.yacloud.mdb.forms.button_configure-settings }}** в блоке **{{ ui-key.yacloud.mdb.forms.section_settings }}**.
   1. Нажмите кнопку **{{ ui-key.yacloud.component.mdb.settings.popup_settings-submit }}**.
   1. Нажмите кнопку **{{ ui-key.yacloud.common.save }}**.
@@ -1041,7 +1055,7 @@ description: Следуя данной инструкции, вы сможете
 - Консоль управления {#console}
 
   1. Перейдите на страницу каталога и выберите сервис **{{ ui-key.yacloud.iam.folder.dashboard.label_managed-greenplum }}**.
-  1. Выберите кластер и нажмите кнопку ![image](../../_assets/console-icons/pencil.svg) **{{ ui-key.yacloud.mdb.cluster.overview.button_action-edit }}** на панели сверху.
+  1. Выберите кластер и нажмите кнопку ![image](../../_assets/console-icons/pencil.svg) **{{ ui-key.yacloud.mdb.clusters.button_action-edit }}** на панели сверху.
   1. В блоке **{{ ui-key.yacloud.mdb.forms.section_resource }}** выберите нужный класс для хостов-мастеров или хостов-сегментов {{ GP }}.
   1. Нажмите кнопку **{{ ui-key.yacloud.mdb.forms.button_edit }}**.
 
@@ -1240,7 +1254,7 @@ description: Следуя данной инструкции, вы сможете
   1. В [консоли управления]({{ link-console-main }}) перейдите в каталог с нужным кластером.
   1. Выберите сервис **{{ ui-key.yacloud.iam.folder.dashboard.label_managed-greenplum }}**.
   1. Выберите нужный кластер.
-  1. В верхней части страницы нажмите кнопку **{{ ui-key.yacloud.mdb.cluster.overview.button_action-edit }}**.
+  1. В верхней части страницы нажмите кнопку **{{ ui-key.yacloud.mdb.clusters.button_action-edit }}**.
   1. В блоке **{{ ui-key.yacloud.mdb.forms.section_storage }}**:
 
       * Выберите [тип диска](../concepts/storage.md).

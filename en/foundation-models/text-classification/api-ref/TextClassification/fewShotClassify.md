@@ -36,7 +36,7 @@ POST https://llm.{{ api-host }}/foundationModels/v1/fewShotTextClassification
 ```
 
 Request for the service to classify text.
-For examples of usage, see [step-by-step guides](/docs/operations/classifier/readymade).
+For examples of usage, see [step-by-step guides](/docs/foundation-models/operations/classifier/readymade).
 
 #|
 ||Field | Description ||
@@ -85,7 +85,8 @@ Expected label for a given text. ||
       "confidence": "string"
     }
   ],
-  "modelVersion": "string"
+  "modelVersion": "string",
+  "inputTokens": "string"
 }
 ```
 
@@ -100,6 +101,9 @@ for the probability of classifying the request text into each class. ||
 || modelVersion | **string**
 
 The model version changes with each new releases. ||
+|| inputTokens | **string** (int64)
+
+Number of input tokens ||
 |#
 
 ## ClassificationLabel {#yandex.cloud.ai.foundation_models.v1.text_classification.ClassificationLabel}

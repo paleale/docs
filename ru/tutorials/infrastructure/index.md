@@ -34,6 +34,7 @@ description: Различные сценарии использования си
 * [{#T}](../infrastructure/coi-with-terraform.md)
 * [Запуск Docker-образа на виртуальной машине](../infrastructure-management/run-docker-on-vm/index.md)
 * [Передача логов через HTTP-вход {{ unified-agent-short-name }} в {{ cloud-logging-full-name }}](../infrastructure-management/ua-http-logging.md)
+* [{#T}](gpu-cluster-deepseek.md)
 
 ## Сеть {#routing}
 
@@ -57,3 +58,8 @@ description: Различные сценарии использования си
 * [{#T}](../dataplatform/clickhouse-dns-peering.md)
 * [{#T}](../infrastructure-management/dns-integration.md)
 * [Создание веб-хука резолвера ACME для ответов на DNS01-проверки](../infrastructure-management/cert-manager-webhook.md)
+
+## GPU {#gpu}
+
+* [Запуск языковой модели DeepSeek-R1 в кластере GPU](../infrastructure-management/gpu-cluster-deepseek.md)
+* [Запуск библиотеки vLLM с языковой моделью Gemma 3 на ВМ с GPU](../infrastructure-management/vllm-gemma-gpu.md)

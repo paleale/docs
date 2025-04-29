@@ -141,7 +141,7 @@ If you no longer need the resources you created, [delete them](#clear-out).
     1. Click ![trigger](../../_assets/console-icons/gear-play.svg) → **{{ ui-key.yacloud.serverless-functions.triggers.list.button_create }}**.
     1. Set the trigger type to **{{ ui-key.yacloud.serverless-functions.triggers.form.label_timer }}**.
     1. In the **{{ ui-key.yacloud.serverless-functions.triggers.form.field_cron-expression }}** field, select `{{ ui-key.yacloud.common.button_cron-day }}`.
-    1. Under **{{ ui-key.yacloud.serverless-functions.triggers.form.section_function }}**, click **{{ ui-key.yacloud.component.service-account-select.button_create-account-new }}**.
+    1. Under **{{ ui-key.yacloud.serverless-functions.triggers.form.section_function }}**, click **{{ ui-key.yacloud.common.create }}**.
     1. Enter the account name. By default, the account is assigned the `{{ roles-functions-invoker }}` role to work with the trigger.
     1. Click **{{ ui-key.yacloud.iam.folder.service-account.popup-robot_button_add }}**.
     1. Click **{{ ui-key.yacloud.serverless-functions.triggers.form.button_create-trigger }}**.
@@ -223,6 +223,3 @@ To stop paying for the resources you created:
 * [Delete the {{ CH }} cluster](../../managed-clickhouse/operations/cluster-delete.md).
 * [Delete the {{ sf-name }} function](../../functions/operations/function/function-delete.md).
 
-#### See also {#see-also}
-
-* [Task analytics in {{ tracker-full-name }}: built-in features and integration with {{ datalens-full-name }}](/blog/posts/2023/10/yandex-tracker-and-datalens)

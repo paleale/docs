@@ -467,9 +467,17 @@ For more information, see [{#T}](../marketplace/security/index.md).
 
 ## {{ org-full-name }} {#organization-roles}
 
+#### organization-manager.auditor {#organization-manager-auditor}
+
+{% include [organizationmanager-auditor](../_roles/organization-manager/auditor.md) %}
+
 #### organization-manager.viewer {#organization-manager-viewer}
 
 {% include [organizationmanager-viewer](../_roles/organization-manager/viewer.md) %}
+
+#### organization-manager.editor {#organization-manager-editor}
+
+{% include [organizationmanager-editor](../_roles/organization-manager/editor.md) %}
 
 #### organization-manager.admin {#organization-manager-admin}
 
@@ -1691,6 +1699,14 @@ For more information, see [{#T}](../search-api/security/index.md).
 #### access-transparency.admin {#access-transparency-admin}
 
 {% include [access-transparency.admin](../_roles/access-transparency/admin.md) %}
+
+#### access-transparency.billingProvider {#access-transparency-billingProvider}
+
+{% include [access-transparency.billingProvider](../_roles/access-transparency/billingProvider.md) %}
+
+#### access-transparency.subscriptionManager {#access-transparency-subscriptionManager}
+
+{% include [access-transparency.subscriptionManager](../_roles/access-transparency/subscriptionManager.md) %}
 
 For more information, see [Access management in Access Transparency](../security-deck/security/access-transparency-roles.md).
 

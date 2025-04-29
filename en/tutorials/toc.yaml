@@ -277,6 +277,8 @@ items:
         href: testing/loadtesting-https-phantom.md
       - name: Step-load HTTPS testing with Pandora
         href: testing/loadtesting-https-pandora.md
+      - name: Scripted HTTP load testing with Pandora
+        href: testing/loadtesting-http-scenario-pandora.md
       - name: Load testing using multiple agents
         href: testing/loadtesting-multiply.md
       - name: Migrating load testing results from OverLoad
@@ -293,6 +295,8 @@ items:
         href: testing/server-logs.md
       - name: Invoking load testing from {{ GL }} CI
         href: testing/loadtesting-gitlab-ci.md
+      - name: Comparing load test results
+        href: testing/loadtesting-results-compare.md
       - name: Deploying {{ GLR }} on a {{ compute-name }} virtual machine
         href: dev/install-gitlab-runner.md
   - name: Basic infrastructure
@@ -465,16 +469,28 @@ items:
         href: container-infrastructure/serial-port.md
       - name: '{{ managed-k8s-name }}'
         items:
+          - name: Creating a new {{ k8s }} project
+            href: container-infrastructure/new-kubernetes-project.md
           - name: Creating a {{ k8s }} cluster with no internet access
             href: container-infrastructure/k8s-cluster-with-no-internet.md
+          - name: Running workloads with GPUs
+            href: container-infrastructure/running-pod-gpu.md
           - name: Using node groups with GPUs and no pre-installed drivers
             href: container-infrastructure/driverless-gpu.md
+          - name: Setting up Time-Slicing GPUs
+            href: container-infrastructure/time-slicing-gpu.md
+          - name: Migrating resources to a different availability zone
+            href: container-infrastructure/migration-to-an-availability-zone.md
           - name: Encrypting secrets in {{ managed-k8s-name }}
             href: container-infrastructure/kms-k8s.md
           - name: Setting up and testing scaling
             items:
               - name: Horizontal application scaling in a cluster
                 href: container-infrastructure/autoscaling.md
+              - name: Vertical application scaling in a cluster
+                href: container-infrastructure/vpa-autoscaling.md
+              - name: Updating the Metrics Server parameters
+                href: container-infrastructure/metrics-server.md
               - name: Deploying and load testing a gRPC service with scaling
                 href: container-infrastructure/loadtesting-grpc-autoscaling.md
           - name: Installing NGINX
@@ -507,10 +523,20 @@ items:
                 href: container-infrastructure/custom-dns.md
               - name: DNS autoscaling based on cluster size
                 href: container-infrastructure/dns-autoscaler.md
+              - name: Setting up NodeLocal DNS Cache
+                href: container-infrastructure/node-local-dns.md
               - name: DNS Challenge for {{ lets-encrypt }} certificates
                 href: container-infrastructure/dnschallenge.md
+          - name: Backups
+            items:
+              - name: Working with {{ compute-name }} snapshots
+                href: container-infrastructure/pvc-snapshot-restore.md
           - name: Monitoring
             items:
+              - name: >-
+                  Cluster monitoring with {{ prometheus-name }} and {{
+                  grafana-name }}
+                href: container-infrastructure/prometheus-grafana-monitoring.md
               - name: '{{ managed-k8s-name }} cluster monitoring with Filebeat OSS'
                 href: container-infrastructure/filebeat-oss-monitoring.md
           - name: Using {{ marketplace-name }} products
@@ -525,7 +551,7 @@ items:
                   Transferring {{ managed-k8s-name }} cluster logs to {{
                   cloud-logging-name }}
                 href: container-infrastructure/k8s-fluent-bit-logging.md
-              - name: Setting up Gateway API in {{ managed-k8s-name }}
+              - name: Setting up Gateway API
                 href: container-infrastructure/gateway-api.md
               - name: Setting up the {{ alb-name }} Ingress controller
                 href: container-infrastructure/alb-ingress-controller.md
@@ -783,8 +809,6 @@ items:
         href: dataplatform/insert-data-ch.md
       - name: Migrating data to {{ mch-name }} using {{ data-transfer-name }}
         href: dataplatform/ch-to-mch-migration.md
-      - name: Migrating data to {{ mch-name }} using {{ CH }}
-        href: dataplatform/clickhouse-migration.md
       - name: >-
           Delivering data from {{ mmy-name }} to {{ mch-name }} using {{
           data-transfer-name }}
@@ -1019,6 +1043,8 @@ items:
           Migrating data from {{ mpg-name }} to {{ mos-name }} using {{
           data-transfer-name }}
         href: dataplatform/postgresql-to-opensearch.md
+      - name: Fixing string sorting issues in {{ PG }} after upgrading glibc
+        href: dataplatform/postgresql-glibc-collation-issues.md
       - name: Migrating a database from {{ GP }} to {{ CH }}
         href: dataplatform/greenplum-to-clickhouse.md
       - name: Migrating a database from {{ GP }} to {{ PG }}
@@ -1176,6 +1202,16 @@ items:
         href: routing/priv-add.md
       - name: Adding a public connection to a direct or partner trunk
         href: routing/pub-add.md
+      - name: Changing the trunk capacity
+        href: routing/trunk-capacity-change.md
+      - name: Changing private connection IP prefixes
+        href: routing/priv-prefixes-change.md
+      - name: Deleting a private connection
+        href: routing/priv-del.md
+      - name: Deleting a public connection
+        href: routing/pub-del.md
+      - name: Deleting a trunk
+        href: routing/trunk-del.md
       - name: Configuring VRRP for a cluster of {{ baremetal-name }} servers
         href: routing/bms-vrf-routing.md
       - name: Configuring network connectivity in the {{ baremetal-name }} subnet
@@ -1336,8 +1372,8 @@ items:
           serverless-containers-full-name }}
         href: serverless/functions-framework-to-container.md
       - name: >-
-          Migrating data from {{ forms-name }} to {{ datalens-name }} using {{
-          sf-name }} and {{ yq-name }}
+          Migrating data from {{ forms-full-name }} to {{ datalens-full-name }}
+          using {{ sf-full-name }} and {{ yq-full-name }}
         items:
           - name: Overview
             href: serverless/forms-and-datalens-integration/index.md
